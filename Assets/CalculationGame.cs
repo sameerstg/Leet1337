@@ -101,8 +101,8 @@ public class CalculationGame : MonoBehaviour
                 question = $"{num1} + {num2} = ";
                 break;
             case 1:
-                num1 = (int)(Random.Range(2, minToAdd + 1)); 
                 num2 = (int)(Random.Range(2, maxToAdd + 1));
+                num1 = (int)(Random.Range(1, num2)); 
                 answer = (num2 - num1).ToString();
                 question = $"{num2} - {num1} = ";
                 break;
@@ -128,13 +128,13 @@ public class CalculationGame : MonoBehaviour
                 }
                 else
                 {
-                    GenerateQuestion();
                     num1 = 1;
+                    GenerateQuestion();
+                    return;
                 }
+                
                 answer = (num2 / num1).ToString();
                 question = $"{num2} / {num1} = ";
-                break;
-            default:
                 break;
         }
         ShowQuestion();

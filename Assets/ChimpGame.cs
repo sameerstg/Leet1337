@@ -10,20 +10,23 @@ public class ChimpGame : MonoBehaviour
     public static ChimpGame _instance;
     public Color color;
     public GameObject mainPanel;
-    Dictionary<Vector2,TextMeshProUGUI> grid = new Dictionary<Vector2, TextMeshProUGUI>();
-    public List<Vector2> rowColoumn = new List<Vector2>();
-    public List<TextMeshProUGUI> texts = new List<TextMeshProUGUI>();
+    public TextMeshProUGUI triesText;
+    int tries;
+    Dictionary<Vector2,TextMeshProUGUI> grid = new();
     public List<GameObject> tilesInSeries = new();
     public Event cellClicked;
     public int tileAmount;
     List<Vector2> tilesPos;
     bool isHidenAll;
+    public GameObject resultPanel,gamePanel;
+    public TextMeshProUGUI score;
     private void Awake()
     {
         _instance = this;
     }
     void Start()
     {
+        
         for (int row = 0; row < 8; row++)
         {
             for (int coloumn = 0; coloumn < 8; coloumn++)
@@ -35,12 +38,16 @@ public class ChimpGame : MonoBehaviour
                     mainPanel.transform.GetChild(row).transform.GetChild(coloumn).GetChild(0).GetComponent<TextMeshProUGUI>());
             }
         }
-        foreach (var item in grid)
-        {
-            item.Value.transform.parent.gameObject.SetActive(false);
-        }
+        HideAllTiles();
+        StartGame();
+    }
+    void StartGame()
+    {
+        tries = 3;
+        triesText.text = $"Tries left = {tries}";
         tileAmount = 5;
         CreateTiles(tileAmount);
+
     }
     void CreateTiles(int amount)
     {
@@ -49,7 +56,6 @@ public class ChimpGame : MonoBehaviour
         {
             item.Value.transform.parent.gameObject.SetActive(false);
         }
-
         tilesPos = new();
         Vector2 newTile;
         for (int i = 0; i < amount; i++)
@@ -99,10 +105,17 @@ public class ChimpGame : MonoBehaviour
         }
         if (tilesInSeries.Count == 0)
         {
-            print("you win");
             tileAmount += 1;
             CreateTiles(tileAmount);
         }
+    }
+    void HideAllTiles()
+    {
+        foreach (var item in grid)
+        {
+            item.Value.transform.parent.gameObject.SetActive(false);
+        }
+
     }
     public void RevealTile(GameObject tile)
     {
@@ -117,8 +130,25 @@ public class ChimpGame : MonoBehaviour
     }
     public void Lost(int amount)
     {
-        print("Print You lost");
-        CreateTiles(tileAmount);
-
+        tries -= 1;
+        triesText.text = $"Tries left = {tries}";
+        if (tries!=0)
+        {
+           CreateTiles(tileAmount);
+        }
+        else
+        {
+            StartCoroutine(ShowScore());
+        }
+    }
+    IEnumerator ShowScore()
+    {
+        gamePanel.SetActive(false);
+        resultPanel.SetActive(true);
+        score.text = $"Score: {tileAmount}";
+        yield return new WaitForSeconds(5);
+        gamePanel.SetActive(true);
+        resultPanel.SetActive(false);
+        StartGame();
     }
 }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class HomeButton : MonoBehaviour
 {
-    public void LoadGame(string name)
+    public void Click()
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(0);
     }
-
 }
