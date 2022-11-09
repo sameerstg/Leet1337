@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonClickedSequence : MonoBehaviour
+public class ButtonClickedVisualSequence : MonoBehaviour
 {
-    SequenceGame sequenceGame;
+    VisualMemoryGame sequenceGame;
     Image image;
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class ButtonClickedSequence : MonoBehaviour
     }
     private void Start()
     {
-        sequenceGame = SequenceGame._instance;
+        sequenceGame = VisualMemoryGame._instance;
     }
     public void Clicked()
     {
@@ -24,16 +24,6 @@ public class ButtonClickedSequence : MonoBehaviour
             sequenceGame.CheckCell(image);
 
         }
-
-
-
-
-
-
-
-
-
-
     }
 
 

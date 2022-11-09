@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chimp.unity
     guid: b00c771f372d4e04bb47d195a8cf1f0d
+  - enabled: 1
+    path: Assets/Scenes/Sequence.unity
+    guid: a1e4ddec4b45b0343b6860cb4da1397b
+  - enabled: 1
+    path: Assets/Scenes/Visual.unity
+    guid: 13fddf2f987eda44c900891ba45fbd10
   m_configObjects: {}

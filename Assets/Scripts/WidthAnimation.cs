@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class WidthAnimation : MonoBehaviour
 {
-    public float width;
     RectTransform rectTransform;
     TMP_InputField textInput;
     
@@ -15,7 +14,7 @@ public class WidthAnimation : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
         textInput = GetComponent<TMP_InputField>();
-        timeData = 1;
+        timeData = 0.5f;
     }
         private void OnEnable()
     {
@@ -39,10 +38,12 @@ public class WidthAnimation : MonoBehaviour
 
         }
 
-        timeData += 0.1f;
+        timeData += 0.5f;
 
 
         NumberGame._instance.questionText.gameObject.SetActive(false);
+        textInput.ActivateInputField();
+
     }
     public void OnActivate()
     {

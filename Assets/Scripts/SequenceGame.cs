@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SequenceGame : MonoBehaviour
+public class SequenceGame: MonoBehaviour
 {
     public static SequenceGame _instance;
     public GameObject mainPanel;
@@ -40,13 +40,14 @@ public class SequenceGame : MonoBehaviour
 
     void AddTile()
     {
+        touchPermit = false;
         tileQueue.Enqueue(Random.Range(0, gridImg.Count));
         StartCoroutine(HighlightAllTiles());
     }
 
     IEnumerator HighlightTile(int index)
     {
-        yield return new WaitForSeconds(.05f);
+        yield return new WaitForSeconds(.02f);
         
         gridImg[index].color = selectColor;
 
