@@ -3,21 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonClicked : MonoBehaviour
+public class ButtonClickedSequence : MonoBehaviour
 {
-    ChimpGame chimpGame;
+    SequenceGame sequenceGame;
+    Image image;
     private void Awake()
     {
+        image = GetComponent<Image>();
         Button button = gameObject.AddComponent<Button>();
         button.onClick.AddListener(Clicked);
     }
     private void Start()
     {
-        chimpGame = ChimpGame._instance;
+        sequenceGame = SequenceGame._instance;
     }
     public void Clicked()
     {
-        chimpGame.CheckCell(this.gameObject);
+        if (sequenceGame.touchPermit)
+        {
+            sequenceGame.CheckCell(image);
+
+        }
+
+
+
+
+
+
+
+
+
+
     }
 
 
