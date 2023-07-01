@@ -8,10 +8,12 @@ public class NumberGame : MonoBehaviour
     public static NumberGame _instance;
     public TextMeshProUGUI questionText;
     public TMP_InputField textInput;
+    WidthAnimation widthAnim;
     int level;
     private void Awake()
     {
         _instance = this;
+        widthAnim = textInput.GetComponent<WidthAnimation>();
     }
     private void Start()
     {
@@ -19,6 +21,7 @@ public class NumberGame : MonoBehaviour
     }
     private void StartGameFromStart()
     {
+        widthAnim.timeData = 0.7f;
         level = 0;
         SetNewQuestion();
     }
@@ -26,6 +29,8 @@ public class NumberGame : MonoBehaviour
     {
 
         level += 1;
+        widthAnim.timeData += 0.35f;
+
         SetNewQuestion();
         print("dobe");
     }

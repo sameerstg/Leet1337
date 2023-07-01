@@ -8,8 +8,9 @@ public class WidthAnimation : MonoBehaviour
 {
     RectTransform rectTransform;
     TMP_InputField textInput;
+    public float increaseInTime = 0.35f;
     
-    float timeData;
+   public float timeData;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -38,7 +39,6 @@ public class WidthAnimation : MonoBehaviour
 
         }
 
-        timeData += 0.5f;
 
 
         NumberGame._instance.questionText.gameObject.SetActive(false);
