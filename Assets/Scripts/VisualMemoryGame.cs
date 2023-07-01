@@ -14,6 +14,7 @@ public class VisualMemoryGame : MonoBehaviour
     public bool touchPermit;
     int level,prevFab,fab;
     int boxAmount;
+    public List<Button> buttons = new();
     private void Awake()
     {
         _instance = this;
@@ -28,6 +29,7 @@ public class VisualMemoryGame : MonoBehaviour
     {
         gridImg = new List<Image>();
 
+        buttons.Clear();
         List<GameObject> tempGO = new List<GameObject>();
         for (int i = 0; i < mainPanel.transform.childCount; i++)
         {
@@ -41,8 +43,9 @@ public class VisualMemoryGame : MonoBehaviour
         for (int i = 0; i < Mathf.Pow(level, 2); i++)
         {
             gridImg.Add(Instantiate(imgPrefab,mainPanel.transform).GetComponent<Image>());
-            gridImg[i].gameObject.AddComponent<ButtonClickedVisualSequence>();
+            var butt = gridImg[i].gameObject.AddComponent<ButtonClickedVisualSequence>();
 
+            buttons.Add(butt.button);
 
         }
         ChangeAllTimeColor(clearColor);
@@ -69,13 +72,8 @@ public class VisualMemoryGame : MonoBehaviour
     void NewGame()
     {
         touchPermit = false;
-        /*        if (boxAmount > Mathf.Sqrt(gridImg.Count)+level-2)
-                {
-                    level += 1;
-                    SetGrid();
-                    return;
-                }
-        */
+
+               
         if (boxAmount==fab)
         {
             int temp = fab;
@@ -127,6 +125,11 @@ public class VisualMemoryGame : MonoBehaviour
 
     IEnumerator HighlightAllTiles()
     {
+
+        foreach (var item in buttons)
+        {
+            item.interactable = false;
+        }
         foreach (var item in gridImg)
         {
             item.color = clearColor;
@@ -150,6 +153,10 @@ public class VisualMemoryGame : MonoBehaviour
 
         }
         touchPermit = true;
+        foreach (var item in buttons)
+        {
+            item.interactable = true;
+        }
     }
 
     public void CheckCell(Image image)

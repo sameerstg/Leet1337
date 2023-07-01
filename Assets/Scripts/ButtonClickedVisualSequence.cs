@@ -7,10 +7,12 @@ public class ButtonClickedVisualSequence : MonoBehaviour
 {
     VisualMemoryGame sequenceGame;
     Image image;
+    public Button button;
     private void Awake()
     {
         image = GetComponent<Image>();
-        Button button = gameObject.AddComponent<Button>();
+        button = gameObject.AddComponent<Button>();
+        button.transition = Selectable.Transition.None;
         button.onClick.AddListener(Clicked);
     }
     private void Start()
