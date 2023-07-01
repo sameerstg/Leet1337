@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class NumberGame : MonoBehaviour
 {
+    public AudioClip auClip;
+    public AudioSource auSource;
     public static NumberGame _instance;
     public TextMeshProUGUI questionText;
     public TMP_InputField textInput;
@@ -13,6 +15,7 @@ public class NumberGame : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        auSource = Camera.main.GetComponent<AudioSource>();
         widthAnim = textInput.GetComponent<WidthAnimation>();
     }
     private void Start()
@@ -50,6 +53,7 @@ public class NumberGame : MonoBehaviour
     }
     public void ValidateAnswer()
     {
+        auSource.PlayOneShot(auClip);
         if (textInput.text == questionText.text)
         {
             StartNextLevel();

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class VisualMemoryGame : MonoBehaviour
 {
+    public AudioClip auClip, auLostClip;
+    AudioSource auSource;
     public static VisualMemoryGame _instance;
     public GameObject mainPanel,imgPrefab;
     public Color32 deselectColor, selectColor,clearColor;
@@ -19,6 +21,7 @@ public class VisualMemoryGame : MonoBehaviour
     {
         _instance = this;
         gridLayout = mainPanel.GetComponent<GridLayoutGroup>();
+        auSource = Camera.main.GetComponent<AudioSource>();
 
     }
     void Start()
@@ -173,7 +176,10 @@ public class VisualMemoryGame : MonoBehaviour
                 {
                     tileQueue.Remove(i);
                     CheckLevelCompletion();
+                    auSource.PlayOneShot(auClip);
+
                     StartCoroutine(HighlightTile(i));
+
                     return;
                 }
                 
@@ -181,7 +187,7 @@ public class VisualMemoryGame : MonoBehaviour
             }
 
         }
-        
+        auSource.PlayOneShot(auLostClip);
             StartNewGame();
 
         

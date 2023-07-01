@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SequenceGame: MonoBehaviour
 {
+    public AudioClip auClip, auLostClip;
+    public AudioSource auSource;
     public static SequenceGame _instance;
     public GameObject mainPanel;
     public Color32 deselectColor, selectColor,clearColor;
@@ -14,6 +16,7 @@ public class SequenceGame: MonoBehaviour
     int level;
     private void Awake()
     {
+        auSource = Camera.main.GetComponent<AudioSource>();
         _instance = this;
     }
     void Start()
@@ -97,11 +100,14 @@ public class SequenceGame: MonoBehaviour
             {
                 if (int.Parse(checkTileQueue.Peek().ToString())==i)
                 {
+                    auSource.PlayOneShot(auClip);
+
                     StartCoroutine(HighlightTile(i));
                     checkTileQueue.Dequeue(); 
                 }
                 else
                 {
+                    auSource.PlayOneShot(auLostClip);
                     print("failed");
                     StartNewGame();
                 }

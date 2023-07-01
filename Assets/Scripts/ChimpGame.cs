@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ChimpGame : MonoBehaviour
 {
 
+    public AudioClip auClip,auLostClip;
+    public AudioSource auSource;
     public static ChimpGame _instance;
     public Color color;
     public GameObject mainPanel;
@@ -26,6 +28,7 @@ public class ChimpGame : MonoBehaviour
     }
     void Start()
     {
+        auSource = Camera.main.GetComponent<AudioSource>();
         
         for (int row = 0; row < 8; row++)
         {
@@ -88,6 +91,8 @@ public class ChimpGame : MonoBehaviour
     {
         if (tilesInSeries[0] == tile)
         {
+            auSource.PlayOneShot(auClip);
+
             tilesInSeries.Remove(tile);
             tilesPos.Remove(tilesPos[0]);
             HideTileProper(tile);
@@ -101,10 +106,13 @@ public class ChimpGame : MonoBehaviour
         }
         else
         {
+            auSource.PlayOneShot(auLostClip);
+
             Lost(tileAmount);
         }
         if (tilesInSeries.Count == 0)
         {
+
             tileAmount += 1;
             CreateTiles(tileAmount);
         }

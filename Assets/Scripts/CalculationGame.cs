@@ -6,6 +6,7 @@ using UnityEngine;
 public class CalculationGame : MonoBehaviour
 {
 
+    public AudioClip auClip;
     [Header("Choice Things")]
     public List<TMP_InputField> minMaxInputs = new List<TMP_InputField>();
     public GameObject buttonToStart;
@@ -35,7 +36,7 @@ public class CalculationGame : MonoBehaviour
     }
 
 
-
+    public AudioSource auSource;
 
     public void CheckAllMinMax()
     {
@@ -58,6 +59,7 @@ public class CalculationGame : MonoBehaviour
     }
     private void Start()
     {
+        auSource = Camera.main.GetComponent<AudioSource>();
         CheckAllMinMax();
         StartGame();
     }
@@ -145,7 +147,7 @@ public class CalculationGame : MonoBehaviour
     }
     public void ValidateAnswer()
     {
-
+        auSource.PlayOneShot(auClip);
         if (answer == answerText.text)
         {
             score += 1;
