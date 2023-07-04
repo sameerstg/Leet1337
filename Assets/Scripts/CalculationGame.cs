@@ -6,6 +6,7 @@ using UnityEngine;
 public class CalculationGame : MonoBehaviour
 {
 
+    public SliderChoice addSub,muldiv;
     public AudioClip auClip;
     [Header("Choice Things")]
     public List<TMP_InputField> minMaxInputs = new List<TMP_InputField>();
@@ -21,7 +22,7 @@ public class CalculationGame : MonoBehaviour
     int score;
     public float time;
     bool isStarted;
-    public TextMeshProUGUI timeText,scoreText;
+    public TextMeshProUGUI timeText, scoreText, highScoreText;
 
 
 
@@ -37,6 +38,7 @@ public class CalculationGame : MonoBehaviour
 
 
     public AudioSource auSource;
+    private int highScore;
 
     public void CheckAllMinMax()
     {
@@ -60,8 +62,8 @@ public class CalculationGame : MonoBehaviour
     private void Start()
     {
         auSource = Camera.main.GetComponent<AudioSource>();
-        CheckAllMinMax();
-        StartGame();
+        highScore = PlayerPrefs.GetInt("CalculationGame");
+        highScoreText.text = $"High Score : {highScore}";   
     }
     public void StartGame()
     {
@@ -90,6 +92,10 @@ public class CalculationGame : MonoBehaviour
             StartCoroutine(ShowResult());
         }
     }
+    int GetRandomNumberByDigitLimit(int digitMin,int digitMax)
+    {
+        return Random.Range((int)Mathf.Pow(10, digitMin - 1), (int)(Mathf.Pow(10, digitMax )));
+    }
     void GenerateQuestion()
     {
         int op = Random.Range(0, 4);
@@ -97,25 +103,25 @@ public class CalculationGame : MonoBehaviour
         switch (op)
         {
             case 0:
-                num1 = (int)(Random.Range(2, minToAdd + 1)); 
-                num2 = (int)(Random.Range(2, maxToAdd + 1));
+                num1 = GetRandomNumberByDigitLimit((int)addSub.min.value,(int)addSub.max.value); 
+                num2 = GetRandomNumberByDigitLimit((int)addSub.min.value, (int)addSub.max.value);
                 answer = (num1 + num2).ToString();
                 question = $"{num1} + {num2} = ";
                 break;
             case 1:
-                num2 = (int)(Random.Range(2, maxToAdd + 1));
-                num1 = (int)(Random.Range(1, num2)); 
-                answer = (num2 - num1).ToString();
-                question = $"{num2} - {num1} = ";
+                num2 = GetRandomNumberByDigitLimit((int)addSub.min.value, (int)addSub.max.value);
+                num1 = Random.Range(num2, (int)Mathf.Pow(10, (int)addSub.max.value));
+                answer = (num1 - num2).ToString();
+                question = $"{num1} - {num2} = ";
                 break;
             case 2:
-                num1 = (int)(Random.Range(2, minToMultiply+1)); 
-                num2 = (int)(Random.Range(2, maxToMultiply + 1));
+                num1 = GetRandomNumberByDigitLimit((int)muldiv.min.value, (int)muldiv.max.value); 
+                num2 = GetRandomNumberByDigitLimit((int)muldiv.min.value, (int)muldiv.max.value);
                 answer = (num1 * num2).ToString();
                 question = $"{num1} * {num2} = ";
                 break;
             case 3:
-                num2 = (int)(Random.Range(2, maxToMultiply + 1));
+                num2 = GetRandomNumberByDigitLimit((int)muldiv.min.value, (int)muldiv.max.value);
                 List<int> num1s = new List<int>();
                 for (int i = 2; i < num2/2; i++)
                 {
@@ -130,7 +136,6 @@ public class CalculationGame : MonoBehaviour
                 }
                 else
                 {
-                    num1 = 1;
                     GenerateQuestion();
                     return;
                 }
@@ -151,6 +156,12 @@ public class CalculationGame : MonoBehaviour
         if (answer == answerText.text)
         {
             score += 1;
+            if (score>highScore)
+            {
+                PlayerPrefs.SetInt("CalculationGame",score);
+                highScore = score;
+                highScoreText.text = $"High Score : {highScore}";
+            }
             scoreText.text = $"Score = {score}";
             answerText.text = "";
             GenerateQuestion();

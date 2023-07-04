@@ -21,13 +21,17 @@ public class ChimpGame : MonoBehaviour
     List<Vector2> tilesPos;
     bool isHidenAll;
     public GameObject resultPanel,gamePanel;
-    public TextMeshProUGUI score;
+    public TextMeshProUGUI scoreText,highScoreText;
+    public int highScore,score;
     private void Awake()
     {
         _instance = this;
     }
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("ChimpGame");
+        highScoreText.text = "High Score : " +  highScore.ToString();
+
         auSource = Camera.main.GetComponent<AudioSource>();
         
         for (int row = 0; row < 8; row++)
@@ -46,7 +50,10 @@ public class ChimpGame : MonoBehaviour
     }
     void StartGame()
     {
+        score = 0;
         tries = 3;
+        scoreText.text = "Score : "+score.ToString();
+
         triesText.text = $"Tries left = {tries}";
         tileAmount = 5;
         CreateTiles(tileAmount);
@@ -114,6 +121,15 @@ public class ChimpGame : MonoBehaviour
         {
 
             tileAmount += 1;
+            score++;
+            if (highScore<score)
+            {
+                highScore = score;
+            PlayerPrefs.SetInt("ChimpGame",score);
+
+            highScoreText.text = "High Score : " + highScore.ToString();
+            }
+            scoreText.text = "Score : " +  score.ToString();
             CreateTiles(tileAmount);
         }
     }
@@ -146,17 +162,18 @@ public class ChimpGame : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ShowScore());
+            StartGame();
+            //StartCoroutine(ShowScore());
         }
     }
-    IEnumerator ShowScore()
-    {
-        gamePanel.SetActive(false);
-        resultPanel.SetActive(true);
-        score.text = $"Score: {tileAmount}";
-        yield return new WaitForSeconds(5);
-        gamePanel.SetActive(true);
-        resultPanel.SetActive(false);
-        StartGame();
-    }
+    //IEnumerator ShowScore()
+    //{
+    //    gamePanel.SetActive(false);
+    //    resultPanel.SetActive(true);
+    //    score.text = $"Score: {tileAmount}";
+    //    yield return new WaitForSeconds(5);
+    //    gamePanel.SetActive(true);
+    //    resultPanel.SetActive(false);
+    //    StartGame();
+    //}
 }

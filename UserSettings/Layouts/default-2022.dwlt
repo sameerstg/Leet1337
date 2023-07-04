@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -190,8 +190,8 @@ MonoBehaviour:
     y: 0
     width: 191
     height: 504
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -216,8 +216,8 @@ MonoBehaviour:
     y: 0
     width: 100
     height: 504
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 117
+  controlID: 74
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -319,8 +319,8 @@ MonoBehaviour:
     y: 0
     width: 635
     height: 443
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -345,8 +345,8 @@ MonoBehaviour:
     y: 0
     width: 697
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -391,7 +391,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3ef6ffff8ef6ffff00f8ffff2af8ffffc8f8ffffe4f8ffff28f9ffff50f9ffff1cfbffff
+      m_ExpandedIDs: c6e1ffff18e2ffff88e3ffffaee3ffff48e4ffff60e4ffffa0e4ffffc6e4ffff1ae6ffff9ae6ffff50e7ffffd6e7ffff90e8ffff3ee9ffff9ae9ffff7aeaffff5cebffff84ecffffb6edffffa2eeffff20efffff9ef0fffff4f1ffffaaf2ffff82f5ffff00f6ffff28fbffffb45900002e5b0000c65d0000fc60000034650000e06d00003e770000067a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.15715194, y: 0.0065153423, z: -0.0010367187, w: -0.98755264}
     speed: 2
-    m_Value: {x: -0.15715194, y: 0.006515342, z: -0.0010367187, w: -0.9875526}
+    m_Value: {x: -0.1571519, y: 0.006515341, z: -0.0010367185, w: -0.9875524}
   m_Size:
     m_Target: 17.406277
     speed: 2
@@ -843,7 +843,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -851,16 +851,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: G:\Programming\Leet1337
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 665a0000
-    m_LastClickedID: 23142
-    m_ExpandedIDs: 00000000665a000000ca9a3b
+    m_SelectedIDs: 745a0000
+    m_LastClickedID: 23156
+    m_ExpandedIDs: 00000000685a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -888,7 +888,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000665a0000
+    m_ExpandedIDs: 00000000685a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -915,7 +915,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000b2890000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_SerializedViewNames:
   - UnityEditor.DeviceSimulation.SimulatorWindow
   m_SerializedViewValues:
-  - G:\Programming\Leet1337\Library\PlayModeViewStates\0e5678e530eb58a428e8c795411965a3
+  - G:\Programming\Leet1337\Library\PlayModeViewStates\b936c89f1a081dd40abd211af1dcbd70
   m_PlayModeViewName: GameView
   m_ShowGizmos: 0
   m_TargetDisplay: 0

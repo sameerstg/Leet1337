@@ -8,15 +8,19 @@ public class NumberGame : MonoBehaviour
     public AudioClip auClip;
     public AudioSource auSource;
     public static NumberGame _instance;
-    public TextMeshProUGUI questionText;
+    public TextMeshProUGUI questionText, highScoreText,scoreText;
     public TMP_InputField textInput;
     WidthAnimation widthAnim;
+    int highScore;
     int level;
     private void Awake()
     {
         _instance = this;
         auSource = Camera.main.GetComponent<AudioSource>();
         widthAnim = textInput.GetComponent<WidthAnimation>();
+        highScore = PlayerPrefs.GetInt("NumberGame");
+        highScoreText.text = $"High Score : {highScore}";
+        scoreText.text = $"Score : {level}";
     }
     private void Start()
     {
@@ -24,18 +28,33 @@ public class NumberGame : MonoBehaviour
     }
     private void StartGameFromStart()
     {
-        widthAnim.timeData = 0.7f;
+        widthAnim.timeData = 1f;
         level = 0;
         SetNewQuestion();
     }
     void StartNextLevel()
     {
-
+        
         level += 1;
-        widthAnim.timeData += 0.35f;
+        scoreText.text = $"Score : {level}";
+
+        if (level>highScore)
+        {
+            highScore = level;
+            highScoreText.text = $"High Score : {highScore}";
+            PlayerPrefs.SetInt("NumberGame", highScore);
+        }
+        if (widthAnim.timeData != 1)
+        {
+            widthAnim.timeData += 0.35f;
+
+        }
+        else
+        {
+            widthAnim.timeData += 0.15f;
+        }
 
         SetNewQuestion();
-        print("dobe");
     }
     void SetNewQuestion()
     {

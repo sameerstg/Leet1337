@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,11 @@ public class VisualMemoryGame : MonoBehaviour
     public bool touchPermit;
     int level,prevFab,fab;
     int boxAmount;
+    public TextMeshProUGUI scoreText, highScoreText;
+    public int highScore;
     public List<Button> buttons = new();
+    private int score;
+
     private void Awake()
     {
         _instance = this;
@@ -26,6 +31,9 @@ public class VisualMemoryGame : MonoBehaviour
     }
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("Visual");
+        highScoreText.text = "High Score : " + highScore;
+        
         StartNewGame();
     }
     void SetGrid()
@@ -64,7 +72,9 @@ public class VisualMemoryGame : MonoBehaviour
     }
     void StartNewGame()
     {
-        print("new game");
+        score = 0;
+        scoreText.text = "Score : "+score;
+        
         prevFab = 3;
         fab = 5;
         level = 3;
@@ -87,8 +97,20 @@ public class VisualMemoryGame : MonoBehaviour
             return;
         }
 
+        scoreText.text = "Score : " + score;
+
+        if (highScore < score)
+        {
+            PlayerPrefs.SetInt("Visual", score);
+
+            highScore = score;
+
+            highScoreText.text = "High Score : " + highScore;
+
+        }
+        score++;
+       
         tileQueue = new List<int>();
-        print("pass");
         for (int i = 0; i < boxAmount; i++)
         {
             int ranTileIndex = Random.Range(0, gridImg.Count);

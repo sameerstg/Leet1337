@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,10 @@ public class SequenceGame: MonoBehaviour
     public List<Image> gridImg = new List<Image>();
     Queue tileQueue,checkTileQueue;
     public bool touchPermit;
-    int level;
+    public TextMeshProUGUI scoreText, highScoreText;
+    public int highScore;
+    private int score;
+
     private void Awake()
     {
         auSource = Camera.main.GetComponent<AudioSource>();
@@ -21,7 +25,12 @@ public class SequenceGame: MonoBehaviour
     }
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("SequenceGame");
+        highScoreText.text = "High Score : " + highScore;
+        scoreText.text = "Score : " + score;
+
         tileQueue = new();
+        score = tileQueue.Count-1;
         checkTileQueue = new();
         for (int i = 0; i < mainPanel.transform.childCount; i++)
         {
@@ -45,6 +54,14 @@ public class SequenceGame: MonoBehaviour
     {
         touchPermit = false;
         tileQueue.Enqueue(Random.Range(0, gridImg.Count));
+        score = tileQueue.Count-1;
+        scoreText.text = "Score : " + score;
+        if (score>highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("SequenceGame", score);
+            highScoreText.text= "High Score : " + score;
+        }
         StartCoroutine(HighlightAllTiles());
     }
 
