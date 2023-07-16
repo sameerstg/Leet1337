@@ -8,14 +8,13 @@ public class WidthAnimation : MonoBehaviour
 {
     RectTransform rectTransform;
     TMP_InputField textInput;
-    public float increaseInTime = 0.35f;
     
    public float timeData;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         textInput = GetComponent<TMP_InputField>();
-        timeData = 0.5f;
+        timeData = 1f;
     }
         private void OnEnable()
     {
@@ -30,15 +29,16 @@ public class WidthAnimation : MonoBehaviour
         textInput.DeactivateInputField();
 
         rectTransform.sizeDelta = new Vector2(1, rectTransform.sizeDelta.y);
-
-        while (rectTransform.sizeDelta.x != 1000)
+        float time = 0;
+        while (time <timeData)
         {
-
-            yield return new WaitForSeconds(0.01f);
-            rectTransform.sizeDelta = new Vector2(Mathf.MoveTowards(rectTransform.sizeDelta.x,1000, 1000*0.01f/timeData), rectTransform.sizeDelta.y);
+            time += Time.deltaTime;
+            rectTransform.sizeDelta = new Vector2(Mathf.Lerp(0,1000,time/timeData), rectTransform.sizeDelta.y);
+            yield return null;
 
         }
 
+        Debug.Log(time);
 
 
         NumberGame._instance.questionText.gameObject.SetActive(false);

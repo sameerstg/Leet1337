@@ -86,7 +86,7 @@ public class CalculationGame : MonoBehaviour
             time += Time.deltaTime;
             timeText.text = $"Time = {(int)time}";
         }
-        if (time>120)
+        if (time>60)
         {
             time = 120;
             StartCoroutine(ShowResult());

@@ -29,7 +29,7 @@ public class NumberGame : MonoBehaviour
     private void StartGameFromStart()
     {
         widthAnim.timeData = 1f;
-        level = 0;
+        level = 1;
         SetNewQuestion();
     }
     void StartNextLevel()
@@ -44,15 +44,29 @@ public class NumberGame : MonoBehaviour
             highScoreText.text = $"High Score : {highScore}";
             PlayerPrefs.SetInt("NumberGame", highScore);
         }
-        if (widthAnim.timeData != 1)
-        {
-            widthAnim.timeData += 0.35f;
+        //if (widthAnim.timeData != 1)
+        //{
+        //    widthAnim.timeData += 0.35f;
 
-        }
-        else
-        {
-            widthAnim.timeData += 0.15f;
-        }
+        //}
+        //else
+        //{
+        //    widthAnim.timeData += 0.15f;
+        //}
+        Debug.Log(level);
+
+        //if (level <= 3)
+        //{
+        //    widthAnim.timeData = 1;
+        //}
+        //else
+        //{
+
+            widthAnim.timeData = (int)(level/3)+1;
+            Debug.Log(widthAnim.timeData);
+
+        //}
+        //widthAnim.timeData  = Mathf.Ceil(level/3);
 
         SetNewQuestion();
     }
@@ -61,7 +75,7 @@ public class NumberGame : MonoBehaviour
         questionText.gameObject.SetActive(true);
         textInput.text = "";
         questionText.text = "";
-        for (int i = 0; i < level + 1; i++)
+        for (int i = 0; i < level; i++)
         {
             questionText.text += GetRandomNumber();
         }
