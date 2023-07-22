@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SequenceGame: MonoBehaviour
 {
-    public AudioClip auClip, auLostClip;
+    public AudioClip auClip, auLostClip,seqSound;
     public AudioSource auSource;
     public static SequenceGame _instance;
     public GameObject mainPanel;
@@ -25,7 +25,7 @@ public class SequenceGame: MonoBehaviour
     }
     void Start()
     {
-        highScore = PlayerPrefs.GetInt("SequenceGame");
+        highScore = PlayerPrefs.GetInt("SequenceGame",0);
         highScoreText.text = "High Score : " + highScore;
         scoreText.text = "Score : " + score;
 
@@ -68,7 +68,7 @@ public class SequenceGame: MonoBehaviour
     IEnumerator HighlightTile(int index)
     {
         yield return new WaitForSeconds(.02f);
-        
+
         gridImg[index].color = selectColor;
 
         yield return new WaitForSeconds(.08f);
@@ -82,7 +82,7 @@ public class SequenceGame: MonoBehaviour
             touchPermit = false;
             AddTile();
         }
-        
+
     }
     IEnumerator HighlightAllTiles()
     {
@@ -95,16 +95,22 @@ public class SequenceGame: MonoBehaviour
         {
             item.color = deselectColor;
         }
-
+float a= 1;
         foreach (var item in tileQueue)
         {
+
             yield return new WaitForSeconds(.1f);
 
             gridImg[int.Parse(item.ToString())].color = selectColor;
+            a+=0.1f;
+            auSource.pitch = a;
+            auSource.PlayOneShot(seqSound);
 
             yield return new WaitForSeconds(0.5f);
+
             gridImg[int.Parse(item.ToString())].color = deselectColor;
         }
+        auSource.pitch = 1;
         checkTileQueue = new(tileQueue);
         touchPermit = true;
     }
@@ -120,7 +126,7 @@ public class SequenceGame: MonoBehaviour
                     auSource.PlayOneShot(auClip);
 
                     StartCoroutine(HighlightTile(i));
-                    checkTileQueue.Dequeue(); 
+                    checkTileQueue.Dequeue();
                 }
                 else
                 {
@@ -133,6 +139,6 @@ public class SequenceGame: MonoBehaviour
         }
 
                 return;
-        
+
     }
 }

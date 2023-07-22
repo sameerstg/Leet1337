@@ -419,7 +419,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 978.7057, y: 125.56}
+  m_SizeDelta: {x: 865.41, y: 125.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288907217
 MonoBehaviour:
@@ -1450,7 +1450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000061035156, y: 139.99043}
+  m_AnchoredPosition: {x: 0, y: 139.99045}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513062690
@@ -2050,6 +2050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   auClip: {fileID: 8300000, guid: 1340ba1fa579f674ab71453241682a8a, type: 3}
   auLostClip: {fileID: 8300000, guid: 44766caa059435f4fb71af84b2bea7e4, type: 3}
+  seqClip: {fileID: 8300000, guid: fcf77559b4c484b4bb499c9a95c32e21, type: 3}
   mainPanel: {fileID: 642066773}
   imgPrefab: {fileID: 5680849806699057608, guid: d43892f92e96ab9499461570ba885afe, type: 3}
   deselectColor:

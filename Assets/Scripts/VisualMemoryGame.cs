@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class VisualMemoryGame : MonoBehaviour
 {
-    public AudioClip auClip, auLostClip;
+    public AudioClip auClip, auLostClip,seqClip;
     AudioSource auSource;
     public static VisualMemoryGame _instance;
     public GameObject mainPanel,imgPrefab;
@@ -33,7 +33,7 @@ public class VisualMemoryGame : MonoBehaviour
     {
         highScore = PlayerPrefs.GetInt("Visual");
         highScoreText.text = "High Score : " + highScore;
-        
+
         StartNewGame();
     }
     void SetGrid()
@@ -74,7 +74,7 @@ public class VisualMemoryGame : MonoBehaviour
     {
         score = 0;
         scoreText.text = "Score : "+score;
-        
+
         prevFab = 3;
         fab = 5;
         level = 3;
@@ -86,7 +86,7 @@ public class VisualMemoryGame : MonoBehaviour
     {
         touchPermit = false;
 
-               
+
         if (boxAmount==fab)
         {
             int temp = fab;
@@ -109,7 +109,7 @@ public class VisualMemoryGame : MonoBehaviour
 
         }
         score++;
-       
+
         tileQueue = new List<int>();
         for (int i = 0; i < boxAmount; i++)
         {
@@ -130,7 +130,7 @@ public class VisualMemoryGame : MonoBehaviour
     IEnumerator HighlightTile(int index)
     {
         yield return new WaitForSeconds(.05f);
-        
+
         gridImg[index].color = selectColor;
 
         yield return new WaitForSeconds(.08f);
@@ -168,8 +168,9 @@ public class VisualMemoryGame : MonoBehaviour
 
         foreach (var item in tileQueue)
         {
-            gridImg[int.Parse(item.ToString())].color = selectColor;            
+            gridImg[int.Parse(item.ToString())].color = selectColor;
         }
+        auSource.PlayOneShot(seqClip);
         yield return new WaitForSeconds(1.5f);
 
         foreach (var item in tileQueue)
@@ -204,7 +205,7 @@ public class VisualMemoryGame : MonoBehaviour
 
                     return;
                 }
-                
+
 
             }
 
@@ -212,8 +213,8 @@ public class VisualMemoryGame : MonoBehaviour
         auSource.PlayOneShot(auLostClip);
             StartNewGame();
 
-        
-        
-        
+
+
+
     }
 }

@@ -855,6 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   auClip: {fileID: 8300000, guid: 1340ba1fa579f674ab71453241682a8a, type: 3}
   auLostClip: {fileID: 8300000, guid: 44766caa059435f4fb71af84b2bea7e4, type: 3}
+  seqSound: {fileID: 8300000, guid: fcf77559b4c484b4bb499c9a95c32e21, type: 3}
   auSource: {fileID: 0}
   mainPanel: {fileID: 805960194}
   deselectColor:
@@ -1804,7 +1805,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 978.7057, y: 125.56}
+  m_SizeDelta: {x: 865.41, y: 125.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056034884
 MonoBehaviour:
@@ -1823,7 +1824,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 51.67
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
